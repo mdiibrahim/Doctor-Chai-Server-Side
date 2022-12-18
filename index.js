@@ -342,6 +342,14 @@ async function run() {
             const result = await doctorsCollection.deleteOne(filter);
             res.send(result);
         })
+        app.delete('/users/:id', verifyJWT, verifyAdmin, async (req, res) => {
+        
+            const id = req.params.id;
+            console.log(id)
+            const filter = { _id: ObjectId(id) };
+            const result = await usersCollection.deleteOne(filter);
+            res.send(result);
+        })
 
     }
     finally {
